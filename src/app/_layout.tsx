@@ -4,7 +4,7 @@ import { Stack, useRouter, SplashScreen } from 'expo-router';
 import React, { useEffect } from 'react';
 import { TamaguiProvider, Button, Text } from 'tamagui';
 
-import config from '../tamagui.config';
+import config from '../../tamagui.config';
 
 SplashScreen.preventAutoHideAsync();
 

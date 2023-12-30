@@ -3,77 +3,86 @@ import { createInterFont } from '@tamagui/font-inter';
 import { createMedia } from '@tamagui/react-native-media-driver';
 import { shorthands } from '@tamagui/shorthands';
 import { themes, tokens } from '@tamagui/themes';
-import { createTamagui, styled, Text, YStack } from 'tamagui';
+import { createTamagui } from 'tamagui';
 
-const animations = createAnimations({
+export const animations = createAnimations({
+  '100ms': {
+    type: 'timing',
+    duration: 100,
+  },
   bouncy: {
-    type: 'spring',
-    damping: 10,
+    damping: 9,
     mass: 0.9,
-    stiffness: 100,
+    stiffness: 150,
   },
   lazy: {
-    type: 'spring',
-    damping: 20,
-    stiffness: 60,
+    damping: 18,
+    stiffness: 50,
+  },
+  medium: {
+    damping: 15,
+    stiffness: 120,
+    mass: 1,
+  },
+  slow: {
+    damping: 15,
+    stiffness: 40,
   },
   quick: {
-    type: 'spring',
     damping: 20,
     mass: 1.2,
     stiffness: 250,
   },
-});
-
-const headingFont = createInterFont();
-
-const bodyFont = createInterFont();
-
-export const Container = styled(YStack, {
-  flex: 1,
-  padding: 24,
-});
-
-export const Main = styled(YStack, {
-  flex: 1,
-  maxWidth: 960,
-  justifyContent: 'space-between',
-});
-
-export const Title = styled(Text, {
-  fontSize: 64,
-  fontWeight: 'bold',
-});
-
-export const Subtitle = styled(Text, {
-  color: '#38434D',
-  fontSize: 36,
-});
-
-export const Button = styled(YStack, {
-  alignItems: 'center',
-  backgroundColor: '#6366F1',
-  borderRadius: 24,
-  justifyContent: 'center',
-  padding: 16,
-  shadowColor: '#000',
-  shadowOffset: {
-    height: 2,
-    width: 0,
-  },
-  shadowOpacity: 0.25,
-  shadowRadius: 3.84,
-  hoverStyle: {
-    backgroundColor: '#5a5fcf',
+  tooltip: {
+    damping: 10,
+    mass: 0.9,
+    stiffness: 100,
   },
 });
 
-export const ButtonText = styled(Text, {
-  color: '#FFFFFF',
-  fontSize: 16,
-  fontWeight: '600',
-  textAlign: 'center',
+const headingFont = createInterFont({
+  size: {
+    6: 15,
+  },
+  transform: {
+    6: 'uppercase',
+    7: 'none',
+  },
+  weight: {
+    6: '400',
+    7: '700',
+  },
+  color: {
+    6: '$colorFocus',
+    7: '$color',
+  },
+  letterSpacing: {
+    5: 2,
+    6: 1,
+    7: 0,
+    8: -1,
+    9: -2,
+    10: -3,
+    12: -4,
+    14: -5,
+    15: -6,
+  },
+  face: {
+    700: { normal: 'InterBold' },
+  },
 });
+
+const bodyFont = createInterFont(
+  {
+    face: {
+      700: { normal: 'InterBold' },
+    },
+  },
+  {
+    sizeSize: (size) => Math.round(size * 1.1),
+    sizeLineHeight: (size) => Math.round(size * 1.1 + (size > 20 ? 10 : 10)),
+  }
+);
 
 const config = createTamagui({
   light: {
