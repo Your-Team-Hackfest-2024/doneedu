@@ -38,7 +38,7 @@ export default function Layout() {
   );
 
   return (
-    <TamaguiProvider config={config}>
+    <TamaguiProvider config={config} defaultTheme="dark">
       <Stack>
         <Stack.Screen name="index" options={{ title: 'Overview' }} />
         <Stack.Screen

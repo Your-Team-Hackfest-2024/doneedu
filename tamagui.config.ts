@@ -87,8 +87,8 @@ const bodyFont = createInterFont(
 const config = createTamagui({
   light: {
     color: {
-      background: 'gray',
-      text: 'black',
+      background: '#FAF8FC',
+      text: '#0A1A19',
     },
   },
   defaultFont: 'body',
@@ -100,7 +100,23 @@ const config = createTamagui({
     body: bodyFont,
     heading: headingFont,
   },
-  themes,
+  themes: {
+    ...themes,
+    dark: {
+      primary: '#1b6b6f',
+      secondary: '#0f3a3e',
+      accent: '#1ec9d2',
+      background: '#050307',
+      color: '#e5f5f4',
+    },
+    light: {
+      primary: '#90e0e4',
+      secondary: '#c1ecf0',
+      accent: '#2dd8e1',
+      background: '#faf8fc',
+      color: '#0a1a19',
+    },
+  },
   tokens,
   media: createMedia({
     xs: { maxWidth: 660 },
