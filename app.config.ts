@@ -1,7 +1,7 @@
 import type { ExpoConfig } from '@expo/config';
 
 const defineConfig = (): ExpoConfig => ({
-  name: 'Do Need U',
+  name: 'DoNeedU',
   slug: 'do-need-u',
   version: '1.0.0',
 
@@ -28,12 +28,12 @@ const defineConfig = (): ExpoConfig => ({
   },
 
   orientation: 'portrait',
-  icon: './assets/icon.png',
+  icon: './assets/adaptive-icon.png',
   userInterfaceStyle: 'automatic',
   splash: {
-    image: './assets/splash.png',
+    image: './assets/icon.png',
     resizeMode: 'contain',
-    backgroundColor: '#ffffff',
+    backgroundColor: '#90e0e4',
   },
   assetBundlePatterns: ['**/*'],
   ios: {
@@ -44,7 +44,7 @@ const defineConfig = (): ExpoConfig => ({
     package: 'com.hackfest.doneedu',
     adaptiveIcon: {
       foregroundImage: './assets/adaptive-icon.png',
-      backgroundColor: '#ffffff',
+      backgroundColor: '#faf8fc',
     },
   },
 });
