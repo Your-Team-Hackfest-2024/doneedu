@@ -25,7 +25,8 @@ export const Toast = () => {
       y={0}
       opacity={1}
       scale={1}
-      animation="quick">
+      animation="quick"
+    >
       <ToastContainer>
         <TamaguiToast.Title lh="$1">{currentToast.title}</TamaguiToast.Title>
         {!!currentToast.message && (

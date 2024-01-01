@@ -21,7 +21,8 @@ export default function Page() {
               toast.show('Hallo world', {
                 message: 'This is a toast message',
               })
-            }>
+            }
+          >
             Show Toast
           </Button>
         </YStack>
