@@ -9,7 +9,11 @@ npm-debug.*
 *.mobileprovision
 *.orig.*
 web-build/
-# expo router
+# expo
+.expo/
+dist/
+ios
+android
 expo-env.d.ts
 # tamagui
 .tamagui/
