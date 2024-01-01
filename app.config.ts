@@ -11,16 +11,25 @@ const defineConfig = (): ExpoConfig => ({
     output: 'static',
     favicon: './assets/favicon.png',
   },
-  plugins: ['expo-router'],
+  plugins: [
+    'expo-router',
+    [
+      'expo-build-properties',
+      {
+        ios: {
+          deploymentTarget: '13.0',
+        },
+      },
+    ],
+  ],
   experiments: {
     typedRoutes: true,
-
     tsconfigPaths: true,
   },
 
   orientation: 'portrait',
   icon: './assets/icon.png',
-  userInterfaceStyle: 'dark',
+  userInterfaceStyle: 'automatic',
   splash: {
     image: './assets/splash.png',
     resizeMode: 'contain',
@@ -28,9 +37,11 @@ const defineConfig = (): ExpoConfig => ({
   },
   assetBundlePatterns: ['**/*'],
   ios: {
+    bundleIdentifier: 'com.hackfest.doneedu',
     supportsTablet: true,
   },
   android: {
+    package: 'com.hackfest.doneedu',
     adaptiveIcon: {
       foregroundImage: './assets/adaptive-icon.png',
       backgroundColor: '#ffffff',
