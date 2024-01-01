@@ -1,3 +1,4 @@
+import { DarkTheme, DefaultTheme, ThemeProvider } from '@react-navigation/native';
 import { ToastProvider, ToastViewport, useToastController } from '@tamagui/toast';
 import {
   MutationCache,
@@ -10,7 +11,7 @@ import Constants, { ExecutionEnvironment } from 'expo-constants';
 import { useFonts } from 'expo-font';
 import { Stack, SplashScreen } from 'expo-router';
 import React, { useEffect, useState } from 'react';
-import { AppState, AppStateStatus, Platform } from 'react-native';
+import { AppState, AppStateStatus, Platform, useColorScheme } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { TamaguiProvider } from 'tamagui';
 
@@ -24,6 +25,7 @@ const isExpo = Constants.executionEnvironment === ExecutionEnvironment.StoreClie
 
 export default function Layout() {
   const toast = useToastController();
+  const colorScheme = useColorScheme();
   const { left, top, right } = useSafeAreaInsets();
   const [loaded] = useFonts({
     Inter: require('@tamagui/font-inter/otf/Inter-Medium.otf'),
@@ -84,12 +86,22 @@ export default function Layout() {
 
   return (
     <QueryClientProvider client={queryClient}>
-      <TamaguiProvider config={config} defaultTheme="dark">
-        <ToastProvider burntOptions={{ from: 'top' }} native={!isExpo && 'ios'}>
-          <Stack>
-            <Stack.Screen name="index" options={{ title: 'Overview' }} />
-            <Stack.Screen name="details" options={{ title: 'Details' }} />
-          </Stack>
+      <TamaguiProvider
+        config={config}
+        disableInjectCSS
+        defaultTheme={colorScheme === 'light' ? 'light' : 'dark'}
+      >
+        <ToastProvider
+          burntOptions={{ from: 'top' }}
+          native={!isExpo && 'ios'}
+          swipeDirection="horizontal"
+        >
+          <ThemeProvider value={colorScheme === 'light' ? DefaultTheme : DarkTheme}>
+            <Stack>
+              <Stack.Screen name="index" options={{ title: 'Overview' }} />
+              <Stack.Screen name="details" options={{ title: 'Details' }} />
+            </Stack>
+          </ThemeProvider>
 
           <Toast />
           <ToastViewport flexDirection="column-reverse" top={top} left={left} right={right} />
