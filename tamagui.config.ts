@@ -104,14 +104,14 @@ const config = createTamagui({
     dark: {
       primary: '#1b6b6f',
       secondary: '#0f3a3e',
-      accent: '#1ec9d2',
+      accent: '#deb00d',
       background: '#050307',
       color: '#e5f5f4',
     },
     light: {
       primary: '#90e0e4',
       secondary: '#c1ecf0',
-      accent: '#2dd8e1',
+      accent: '#f2c521',
       background: '#faf8fc',
       color: '#0a1a19',
     },
