@@ -85,7 +85,7 @@ export default function Layout() {
   return (
     <QueryClientProvider client={queryClient}>
       <TamaguiProvider config={config} defaultTheme="dark">
-        <ToastProvider burntOptions={{ from: 'top' }} native={!isExpo}>
+        <ToastProvider burntOptions={{ from: 'top' }} native={!isExpo && 'ios'}>
           <Stack>
             <Stack.Screen name="index" options={{ title: 'Overview' }} />
             <Stack.Screen name="details" options={{ title: 'Details' }} />
