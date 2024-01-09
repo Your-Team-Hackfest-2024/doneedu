@@ -1,12 +1,5 @@
-import {
-  BottomTabNavigationEventMap,
-  BottomTabNavigationOptions,
-} from '@react-navigation/bottom-tabs';
-import { ParamListBase, TabNavigationState } from '@react-navigation/native';
-import { withLayoutContext } from 'expo-router';
 import React from 'react';
 import {
-  AnimatedTabBarNavigator,
   DotSize,
   IAppearanceOptions,
   TabButtonLayout,
@@ -15,13 +8,7 @@ import {
 import { IconHome, IconCoins, IconUser } from 'tabler-icons-react-native';
 import { useTheme } from 'tamagui';
 
-const { Navigator } = AnimatedTabBarNavigator();
-const Tabs = withLayoutContext<
-  BottomTabNavigationOptions,
-  typeof Navigator,
-  TabNavigationState<ParamListBase>,
-  BottomTabNavigationEventMap
->(Navigator);
+import { Tabs } from '@/lib/navigation';
 
 export default function TabsLayout() {
   const theme = useTheme();
