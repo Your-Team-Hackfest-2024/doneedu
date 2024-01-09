@@ -23,7 +23,7 @@ SplashScreen.preventAutoHideAsync();
 
 const isExpo = Constants.executionEnvironment === ExecutionEnvironment.StoreClient;
 
-export default function Layout() {
+export default function RootLayout() {
   const toast = useToastController();
   const colorScheme = useColorScheme();
   const { left, top, right } = useSafeAreaInsets();
@@ -97,10 +97,7 @@ export default function Layout() {
           swipeDirection="horizontal"
         >
           <ThemeProvider value={colorScheme === 'light' ? DefaultTheme : DarkTheme}>
-            <Stack>
-              <Stack.Screen name="index" options={{ title: 'Overview' }} />
-              <Stack.Screen name="details" options={{ title: 'Details' }} />
-            </Stack>
+            <Stack screenOptions={{ headerShown: false }} />
           </ThemeProvider>
 
           <Toast />
