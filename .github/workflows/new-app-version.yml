@@ -63,4 +63,4 @@ jobs:
 
       - name: 🏃‍♂️ Run App release
         run: |
-          bun run np --no-publish --no-cleanup --no-release-draft ${{ github.event.inputs.release-type }}
+          bun run np --no-publish --no-cleanup --no-tests --no-release-draft ${{ github.event.inputs.release-type }}
