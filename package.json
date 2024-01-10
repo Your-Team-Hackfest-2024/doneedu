@@ -57,13 +57,13 @@
   },
   "devDependencies": {
     "@babel/core": "^7.20.0",
+    "@tamagui/babel-plugin": "1.84.0",
     "@types/react": "~18.2.14",
     "@typescript-eslint/eslint-plugin": "^6.7.2",
     "@typescript-eslint/parser": "^6.7.2",
     "eslint": "^8.50.0",
     "eslint-config-universe": "^12.0.0",
     "prettier": "^3.0.3",
-    "@tamagui/babel-plugin": "1.84.0",
     "typescript": "^5.1.3"
   },
   "eslintConfig": {
@@ -82,5 +82,9 @@
       ]
     }
   },
-  "private": true
+  "private": true,
+  "main": "index.js",
+  "repository": "https://github.com/Your-Team-Hackfest-2024/do-need-u.git",
+  "author": "mail2418",
+  "license": "MIT"
 }
