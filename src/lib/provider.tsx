@@ -11,8 +11,7 @@ import React, { ReactNode, useEffect, useState } from 'react';
 import { AppState, AppStateStatus, Platform, useColorScheme } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { TamaguiProvider } from 'tamagui';
-
-import config from '../../tamagui.config';
+import config from 'tamagui.config';
 
 import { Toast } from '@/components/Toast';
 import { isExpo } from '@/lib/utils';
@@ -64,6 +63,7 @@ export default function Provider({ children }: { children: ReactNode }) {
           <ThemeProvider value={colorScheme === 'light' ? DefaultTheme : DarkTheme}>
             {children}
           </ThemeProvider>
+
           <Toast />
           <ToastViewport flexDirection="column-reverse" top={top} left={left} right={right} />
         </ToastProvider>

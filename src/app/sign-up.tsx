@@ -1,3 +1,5 @@
-export default function SignInScreen() {
-  return null;
+import AuthForm from '@/components/AuthForm';
+
+export default function SignUpScreen() {
+  return <AuthForm variant="signup" />;
 }

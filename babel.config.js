@@ -5,7 +5,7 @@ module.exports = function (api) {
   plugins.push([
     '@tamagui/babel-plugin',
     {
-      components: ['tamagui'],
+      components: ['tamagui', '@tamagui-extras/form', '@tamagui-extras/core'],
       config: './tamagui.config.ts',
     },
   ]);

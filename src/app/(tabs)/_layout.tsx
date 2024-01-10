@@ -49,14 +49,14 @@ export default function TabsLayout() {
         }}
       />
       <Tabs.Screen
-        name="points"
+        name="(private)/points"
         options={{
           tabBarLabel: 'Points',
           tabBarIcon: ({ color, size }) => <IconCoins color={color} size={size} />,
         }}
       />
       <Tabs.Screen
-        name="profile"
+        name="(private)/profile"
         options={{
           tabBarLabel: 'You',
           tabBarIcon: ({ color, size }) => <IconUser color={color} size={size} />,
