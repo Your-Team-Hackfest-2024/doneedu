@@ -1,12 +1,4 @@
 import { Toast as TamaguiToast, useToastState } from '@tamagui/toast';
-import { YStack, styled } from 'tamagui';
-
-const ToastContainer = styled(YStack, {
-  backgroundColor: '$primary',
-  borderRadius: '$12',
-  paddingHorizontal: '$4',
-  paddingVertical: '$2',
-});
 
 export const Toast = () => {
   const currentToast = useToastState();
@@ -26,13 +18,12 @@ export const Toast = () => {
       opacity={1}
       scale={1}
       animation="quick"
+      backgroundColor="$primary"
     >
-      <ToastContainer>
-        <TamaguiToast.Title lh="$1">{currentToast.title}</TamaguiToast.Title>
-        {!!currentToast.message && (
-          <TamaguiToast.Description color="$color">{currentToast.message}</TamaguiToast.Description>
-        )}
-      </ToastContainer>
+      <TamaguiToast.Title lineHeight="$1">{currentToast.title}</TamaguiToast.Title>
+      {!!currentToast.message && (
+        <TamaguiToast.Description color="$color">{currentToast.message}</TamaguiToast.Description>
+      )}
     </TamaguiToast>
   );
 };
