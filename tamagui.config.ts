@@ -99,9 +99,11 @@ const config = createTamagui({
     body: bodyFont,
     heading: headingFont,
   },
+  tokens,
   themes: {
     ...themes,
     dark: {
+      ...themes.dark,
       primary: '#1b6b6f',
       secondary: '#0f3a3e',
       accent: '#deb00d',
@@ -109,6 +111,7 @@ const config = createTamagui({
       color: '#e5f5f4',
     },
     light: {
+      ...themes.light,
       primary: '#90e0e4',
       secondary: '#c1ecf0',
       accent: '#f2c521',
@@ -116,7 +119,6 @@ const config = createTamagui({
       color: '#0a1a19',
     },
   },
-  tokens,
   // media: createMedia({
   //   xs: { maxWidth: 660 },
   //   sm: { maxWidth: 800 },
