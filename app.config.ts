@@ -3,7 +3,7 @@ import type { ExpoConfig } from '@expo/config';
 const defineConfig = (): ExpoConfig => ({
   name: 'DoNeedU',
   slug: 'do-need-u',
-  version: '1.0.0',
+  version: process.env.VERSION?.toString(),
 
   scheme: 'do-need-u',
   web: {
