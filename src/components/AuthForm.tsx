@@ -6,8 +6,8 @@ import { useRouter } from 'expo-router';
 import { FirebaseError } from 'firebase/app';
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from 'firebase/auth';
 import { useForm } from 'react-hook-form';
-import { KeyboardAvoidingView, Platform } from 'react-native';
-import { Form, YStack } from 'tamagui';
+import { KeyboardAvoidingView, Platform, TouchableOpacity } from 'react-native';
+import { Form, Paragraph, Spacer, Theme, YStack } from 'tamagui';
 import { z } from 'zod';
 
 import { Container } from '@/components/Container';
@@ -70,7 +70,7 @@ export default function AuthForm({ variant }: AuthFormProps) {
           ? await signInWithEmailAndPassword(auth, data.email, data.password)
           : await createUserWithEmailAndPassword(auth, data.email, data.password);
       setUser(response.user);
-      router.back();
+      router.push('/');
     } catch (error) {
       if (error instanceof FirebaseError)
         toast.show(error.name, {
@@ -90,11 +90,35 @@ export default function AuthForm({ variant }: AuthFormProps) {
           <YStack gap="$2">
             <LmInputRhf name="email" control={control} label="Email" />
             <LmInputRhf isPassword name="password" control={control} label="Password" />
+
+            <Spacer space="$4" />
+
+            {variant === 'signin' && (
+              <YStack space="$1">
+                <TouchableOpacity
+                  onPress={() => router.push(variant === 'signin' ? '/sign-up' : '/sign-in')}
+                >
+                  <Paragraph textAlign="center" fontWeight="700">
+                    Doesn't have an account?
+                    <Paragraph color="$primary" fontWeight="700">
+                      {variant === 'signin' && ' Sign Up'}
+                    </Paragraph>
+                  </Paragraph>
+                </TouchableOpacity>
+                <TouchableOpacity>
+                  <Paragraph textAlign="center" color="$primary" fontWeight="700">
+                    Forgot Password?
+                  </Paragraph>
+                </TouchableOpacity>
+              </YStack>
+            )}
           </YStack>
           <Form.Trigger asChild>
-            <LmButton loading={formState.isSubmitting}>
-              {variant === 'signin' ? 'Sign In' : 'Sign Up'}
-            </LmButton>
+            <Theme name="primary_Button">
+              <LmButton loading={formState.isSubmitting}>
+                {variant === 'signin' ? 'Sign In' : 'Sign Up'}
+              </LmButton>
+            </Theme>
           </Form.Trigger>
         </Form>
       </Container>

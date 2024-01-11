@@ -113,6 +113,16 @@ const config = createTamagui({
   tokens,
   themes: {
     ...themes,
+    dark_primary_Button: {
+      background: color.dark.primary,
+      color: color.dark.color,
+      backgroundPress: '#144d52',
+    },
+    light_primary_Button: {
+      background: color.light.primary,
+      color: color.dark.color,
+      backgroundPress: '#ade6eb',
+    },
     dark_Button: {
       background: color.dark.accent,
       color: color.dark.color,
