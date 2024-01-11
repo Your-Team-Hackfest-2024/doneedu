@@ -76,10 +76,10 @@ runs:
 
     - name: 📱 Run Android Build
       if: ${{ inputs.ANDROID == 'true' }}
-      run: eas build --profile staging --platform android --non-interactive  --no-wait --message "Build ${{ inputs.VERSION }}"
+      run: eas build --profile staging --platform android --non-interactive --message "Build ${{ inputs.VERSION }}"
       shell: bash
 
     - name: 📱 Run IOS Build
       if: ${{ inputs.IOS == 'true' }}
-      run: eas build --profile staging --platform ios --non-interactive  --no-wait --message "Build ${{ inputs.VERSION }}"
+      run: eas build --profile staging --platform ios --non-interactive --message "Build ${{ inputs.VERSION }}"
       shell: bash

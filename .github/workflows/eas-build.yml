@@ -15,13 +15,17 @@ name: EAS Build (Android & IOS) (EAS)
 
 on:
   workflow_dispatch:
-  release:
-    types: [published]
+  workflow_run:
+    workflows: ["New GitHub Release"]
+    types:
+      - completed
 
 jobs:
   Build:
     name: EAS Build (Android & IOS) (EAS)
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
     steps:
       - name: 📦 Checkout project repo
         uses: actions/checkout@v4
@@ -36,5 +40,25 @@ jobs:
         with:
           APP_ENV: staging
           EXPO_TOKEN: ${{ secrets.EXPO_TOKEN }}
-          VERSION: ${{ github.event.release.tag_name }}
+          VERSION: ${{ github.event.workflow_run.head_branch }}
           IOS: false # TODO: set as true when IOS account is ready
+
+      - name: 🔍 EAS Build APK URL
+        id: build
+        run: |
+          content=$(eas build:view --json)
+          # the following lines are only required for multi line json
+          content="${content//'%'/'%25'}"
+          content="${content//$'\n'/'%0A'}"
+          content="${content//$'\r'/'%0D'}"
+          # end of optional handling for multi line json
+          echo "::set-output name=json::$content"
+
+      - name: 📑 Attach APK URL to the release
+        uses: ncipollo/release-action@v1
+        with:
+          allowUpdates: true
+          draft: false
+          updateOnlyUnreleased: true
+          body: "APK: ${{fromJson(steps.build.outputs.json).artifacts.buildUrl}}"
+          tag: ${{ github.event.workflow_run.head_branch }}
