@@ -130,7 +130,7 @@ const config = createTamagui({
     },
     light_Button: {
       background: color.light.accent,
-      color: color.light.color,
+      color: color.dark.color,
       backgroundPress: '#f8df87',
     },
     dark: {
