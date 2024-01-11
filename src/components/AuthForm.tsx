@@ -113,13 +113,13 @@ export default function AuthForm({ variant }: AuthFormProps) {
               </YStack>
             )}
           </YStack>
-          <Form.Trigger asChild>
-            <Theme name="primary_Button">
+          <Theme name="primary_Button">
+            <Form.Trigger asChild>
               <LmButton loading={formState.isSubmitting}>
                 {variant === 'signin' ? 'Sign In' : 'Sign Up'}
               </LmButton>
-            </Theme>
-          </Form.Trigger>
+            </Form.Trigger>
+          </Theme>
         </Form>
       </Container>
     </KeyboardAvoidingView>
