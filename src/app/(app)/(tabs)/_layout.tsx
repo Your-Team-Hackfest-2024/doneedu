@@ -25,22 +25,12 @@ export default function TabsLayout() {
     shadow: true,
     dotSize: DotSize.DEFAULT,
     tabButtonLayout: TabButtonLayout.HORIZONTAL,
-  };
-
-  const defaultTabBarOptions = {
-    activeTintColor: theme.background.val,
-    inactiveTintColor: theme.color.val,
-    labelStyle: {
-      fontWeight: 'bold',
-    },
+    activeColors: theme.color.val,
+    activeTabBackgrounds: theme.accent.val,
   };
 
   return (
-    <Tabs
-      initialRouteName="home"
-      appearance={defaultAppearance}
-      tabBarOptions={defaultTabBarOptions}
-    >
+    <Tabs initialRouteName="home" appearance={defaultAppearance}>
       <Tabs.Screen
         name="index"
         options={{
