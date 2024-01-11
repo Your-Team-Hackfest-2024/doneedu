@@ -16,7 +16,7 @@ name: EAS Build (Android & IOS) (EAS)
 on:
   workflow_dispatch:
   workflow_run:
-    workflows: ["New GitHub Release"]
+    workflows: ['New GitHub Release']
     types:
       - completed
 
@@ -57,8 +57,9 @@ jobs:
       - name: 📑 Attach APK URL to the release
         uses: ncipollo/release-action@v1
         with:
+          generateReleaseNotes: true
           allowUpdates: true
           draft: false
           updateOnlyUnreleased: true
-          body: "APK: ${{fromJson(steps.build.outputs.json).artifacts.buildUrl}}"
+          body: 'APK: ${{fromJson(steps.build.outputs.json).artifacts.buildUrl}}'
           tag: ${{ github.event.workflow_run.head_branch }}
