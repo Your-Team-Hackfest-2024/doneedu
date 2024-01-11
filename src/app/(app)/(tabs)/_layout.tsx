@@ -11,7 +11,7 @@ import { useTheme } from 'tamagui';
 import { Tabs } from '@/lib/navigation';
 
 export default function TabsLayout() {
-  const theme = useTheme();
+  const theme = useTheme({ name: 'Button' });
 
   const defaultAppearance: IAppearanceOptions = {
     topPadding: 10,
