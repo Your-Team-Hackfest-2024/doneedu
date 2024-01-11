@@ -65,7 +65,7 @@ export default function Provider({ children }: { children: ReactNode }) {
           </ThemeProvider>
 
           <Toast />
-          <ToastViewport flexDirection="column-reverse" top={top} left={left} right={right} />
+          <ToastViewport flexDirection="column-reverse" top={top + 64} left={left} right={right} />
         </ToastProvider>
       </TamaguiProvider>
     </QueryClientProvider>
