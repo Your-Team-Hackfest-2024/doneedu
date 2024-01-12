@@ -4,7 +4,6 @@ import { TouchableOpacity } from 'react-native-gesture-handler';
 import { IconChevronRight } from 'tabler-icons-react-native';
 import {
   Image,
-  Card,
   Text,
   H3,
   H4,
@@ -20,6 +19,7 @@ import {
   ScrollView,
 } from 'tamagui';
 
+import { Card } from '@/components/Card';
 import { Container } from '@/components/Container';
 import { useAuthStore } from '@/lib/stores/auth';
 
@@ -38,6 +38,7 @@ export default function HomeScreen() {
           <Text color="$accent">Welcome{user ? ' Back!' : '!'}</Text>
           {user && <H3>{user.email}</H3>}
         </YStack>
+
         <YStack space="$2">
           <XStack alignItems="flex-end" justifyContent="space-between">
             <H4>Ongoing Donations</H4>
@@ -90,7 +91,6 @@ export default function HomeScreen() {
                 backgroundColor="$secondary"
                 animation="100ms"
                 width={230}
-                height={340}
                 pressStyle={{
                   scale: 0.95,
                 }}
@@ -102,7 +102,7 @@ export default function HomeScreen() {
                   <SizableText size="$5">{item.title}</SizableText>
                 </Card.Header>
                 <XStack justifyContent="space-between" marginHorizontal="$4">
-                  <Paragraph size="$1">Top Donors</Paragraph>
+                  <Card.Description size="$1">Top Donors</Card.Description>
                   <XStack gap={-10}>
                     <Avatar circular bordered size="$1">
                       <Avatar.Image src="https://images.unsplash.com/photo-1548142813-c348350df52b?&w=150&h=150&dpr=2&q=80" />
@@ -120,8 +120,8 @@ export default function HomeScreen() {
                 </XStack>
                 <YStack marginHorizontal="$4">
                   <XStack justifyContent="space-between">
-                    <Paragraph size="$1">Collected</Paragraph>
-                    <Paragraph size="$1">90%</Paragraph>
+                    <Card.Description>Collected</Card.Description>
+                    <Card.Description size="$1">90%</Card.Description>
                   </XStack>
                   <Progress value={90} size="$1" backgroundColor="#f8df87">
                     <Progress.Indicator animation="bouncy" backgroundColor="$primary" />
@@ -143,10 +143,11 @@ export default function HomeScreen() {
                 </Card.Footer>
               </Card>
             )}
-            estimatedItemSize={10}
+            estimatedItemSize={217}
             horizontal
           />
         </YStack>
+
         <YStack space="$2">
           <Card
             backgroundColor="$secondary"
@@ -161,14 +162,14 @@ export default function HomeScreen() {
               <IconChevronRight />
             </Card.Header>
 
-            <Paragraph paddingHorizontal="$4" flex={1} size="$1">
+            <Card.Description padded>
               Our main idea is to address the problem of stunting in toddlers and children in
               Indonesia. Our method is through a decentralized donation approach in the form of
               meat, milk, and other animal products.
               {'\n\n'}
               In addition to decentralizing donations, we also help manage the distribution of
               animal nutrition so that it is right on target.
-            </Paragraph>
+            </Card.Description>
             <Card.Footer padded gap="$4" alignItems="flex-end">
               <SizableText size="$6" flex={1}>
                 Join our fight against stunting!
@@ -178,6 +179,61 @@ export default function HomeScreen() {
               </Button>
             </Card.Footer>
           </Card>
+        </YStack>
+
+        <YStack space="$2">
+          <XStack alignItems="flex-end" justifyContent="space-between">
+            <H4>Today's News</H4>
+            <TouchableOpacity>
+              <SizableText color="$accent">See All</SizableText>
+            </TouchableOpacity>
+          </XStack>
+          <XStack minHeight={2}>
+            <FlashList
+              data={Array.from({ length: 2 }, () => DATA)}
+              ItemSeparatorComponent={() => <Spacer space="$2" />}
+              renderItem={({ item }) => (
+                <Card
+                  backgrounded
+                  animation="100ms"
+                  pressStyle={{
+                    scale: 0.95,
+                  }}
+                  onPress={() => {
+                    toast.show('Clicked');
+                  }}
+                >
+                  <XStack padding="$4">
+                    <Image
+                      source={{
+                        uri: 'https://statik.tempo.co/data/2023/11/14/id_1254519/1254519_720.jpg',
+                        width: 70,
+                        height: 70,
+                      }}
+                      borderRadius="$2"
+                    />
+                    <YStack flex={1} space="$2">
+                      <Card.Header paddingVertical={0}>
+                        <SizableText size="$5">{item.title}</SizableText>
+                      </Card.Header>
+                      <Card.Description padded>
+                        Good parenting plays an important role in stunting prevention. Parenting is
+                        closely related to the behavior...
+                      </Card.Description>
+                      <Card.Footer paddingHorizontal="$4">
+                        <Button size="$1" paddingHorizontal="$2">
+                          <Button.Text lineHeight="auto" fontSize={10}>
+                            Read More
+                          </Button.Text>
+                        </Button>
+                      </Card.Footer>
+                    </YStack>
+                  </XStack>
+                </Card>
+              )}
+              estimatedItemSize={256}
+            />
+          </XStack>
         </YStack>
       </Container>
     </ScrollView>
