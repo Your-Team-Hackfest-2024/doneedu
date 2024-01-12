@@ -65,6 +65,7 @@ export default function MainLayout() {
           ...TransitionPresets.ModalPresentationIOS,
           gestureEnabled: true,
           title: 'Sign Up',
+          headerTitleAlign: 'center',
           headerLeft: () => <BackButton />,
           presentation: 'modal',
         }}
@@ -78,6 +79,7 @@ export default function MainLayout() {
           ...TransitionPresets.ModalPresentationIOS,
           gestureEnabled: true,
           title: 'Sign In',
+          headerTitleAlign: 'center',
           headerLeft: () => <BackButton />,
           presentation: 'modal',
         }}
