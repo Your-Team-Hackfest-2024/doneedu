@@ -69,9 +69,7 @@ export default function HomeScreen() {
                 >
                   <Card.Header padded>
                     <H2>See More</H2>
-                    <Paragraph theme="alt2">
-                      See more ongoing donations and make a difference.
-                    </Paragraph>
+                    <Paragraph>See more ongoing donations and make a difference.</Paragraph>
                   </Card.Header>
                   <Card.Footer padded>
                     <XStack flex={1} />
