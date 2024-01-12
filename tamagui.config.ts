@@ -83,13 +83,24 @@ const bodyFont = createInterFont(
   }
 );
 
-const config = createTamagui({
-  light: {
-    color: {
-      background: '#FAF8FC',
-      text: '#0A1A19',
-    },
+const color = {
+  dark: {
+    primary: '#1b6b6f',
+    secondary: '#0f3a3e',
+    accent: '#deb00d',
+    background: '#050307',
+    color: '#e5f5f4',
   },
+  light: {
+    primary: '#90e0e4',
+    secondary: '#c1ecf0',
+    accent: '#f2c521',
+    background: '#faf8fc',
+    color: '#0a1a19',
+  },
+};
+
+const config = createTamagui({
   defaultFont: 'body',
   animations,
   shouldAddPrefersColorThemes: true,
@@ -102,21 +113,33 @@ const config = createTamagui({
   tokens,
   themes: {
     ...themes,
+    dark_primary_Button: {
+      background: color.dark.primary,
+      color: color.dark.color,
+      backgroundPress: '#144d52',
+    },
+    light_primary_Button: {
+      background: color.light.primary,
+      color: color.dark.color,
+      backgroundPress: '#ade6eb',
+    },
+    dark_Button: {
+      background: color.dark.accent,
+      color: color.dark.color,
+      backgroundPress: '#c1990b',
+    },
+    light_Button: {
+      background: color.light.accent,
+      color: color.dark.color,
+      backgroundPress: '#f8df87',
+    },
     dark: {
       ...themes.dark,
-      primary: '#1b6b6f',
-      secondary: '#0f3a3e',
-      accent: '#deb00d',
-      background: '#050307',
-      color: '#e5f5f4',
+      ...color.dark,
     },
     light: {
       ...themes.light,
-      primary: '#90e0e4',
-      secondary: '#c1ecf0',
-      accent: '#f2c521',
-      background: '#faf8fc',
-      color: '#0a1a19',
+      ...color.light,
     },
   },
   // media: createMedia({
