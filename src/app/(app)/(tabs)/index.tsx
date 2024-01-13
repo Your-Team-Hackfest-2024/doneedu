@@ -138,10 +138,7 @@ export default function HomeScreen() {
                         flex={1}
                       />
                     </XStack>
-                    <Link
-                      href={{ pathname: '/(app)/donation/[id]', params: { id: item.id } }}
-                      asChild
-                    >
+                    <Link href={{ pathname: '/payment', params: { donationId: item.id } }} asChild>
                       <Button>Donate Now</Button>
                     </Link>
                   </Card.Footer>

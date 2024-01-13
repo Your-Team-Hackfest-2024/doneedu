@@ -79,7 +79,7 @@ export default function DonationsScreen() {
                 <Card.Description size="$1" theme="alt1">
                   Due on : 21 March 2024
                 </Card.Description>
-                <Link href={{ pathname: '/(app)/donation/[id]', params: { id: item.id } }} asChild>
+                <Link href={{ pathname: '/payment', params: { donationId: item.id } }} asChild>
                   <Button flex={1}>Donate Now</Button>
                 </Link>
               </Card.Footer>
