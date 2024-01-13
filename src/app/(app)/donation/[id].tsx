@@ -1,3 +1,9 @@
+import { H4, YStack } from 'tamagui';
+
 export default function DonationDetailScreen() {
-  return null;
+  return (
+    <YStack>
+      <H4>Donation Detail</H4>
+    </YStack>
+  );
 }

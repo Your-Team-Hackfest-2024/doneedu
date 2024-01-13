@@ -23,12 +23,8 @@ import {
 
 import { Card } from '@/components/Card';
 import { Container } from '@/components/Container';
+import { DATA } from '@/constants/mockData';
 import { useAuthStore } from '@/lib/stores/auth';
-
-const DATA = {
-  id: '1',
-  title: 'Rohingya Refugees Crisis',
-};
 
 export default function HomeScreen() {
   const toast = useToastController();
@@ -142,7 +138,12 @@ export default function HomeScreen() {
                         flex={1}
                       />
                     </XStack>
-                    <Button>Donate Now</Button>
+                    <Link
+                      href={{ pathname: '/(app)/donation/[id]', params: { id: item.id } }}
+                      asChild
+                    >
+                      <Button>Donate Now</Button>
+                    </Link>
                   </Card.Footer>
                 </Card>
               )}
