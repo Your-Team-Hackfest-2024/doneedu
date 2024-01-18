@@ -70,6 +70,7 @@ export default function AuthForm({ variant }: AuthFormProps) {
           ? await signInWithEmailAndPassword(auth, data.email, data.password)
           : await createUserWithEmailAndPassword(auth, data.email, data.password);
       setUser(response.user);
+      toast.show(`Welcome ${response.user.displayName ?? response.user.email}`);
       router.push('/');
     } catch (error) {
       if (error instanceof FirebaseError)
