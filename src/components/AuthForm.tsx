@@ -12,9 +12,10 @@ import { z } from 'zod';
 
 import { Container } from '@/components/Container';
 import { auth } from '@/lib/firebase';
+import { authSchema } from '@/lib/schema/auth';
 import { useAuthStore } from '@/lib/stores/auth';
 
-type AuthFormProps = {
+export type AuthFormProps = {
   variant: 'signin' | 'signup';
 };
 
@@ -22,42 +23,9 @@ export default function AuthForm({ variant }: AuthFormProps) {
   const router = useRouter();
   const toast = useToastController();
 
-  const schema = z.object({
-    email: z.string().email(),
-    password: z.string().superRefine((val, ctx) => {
-      if (variant === 'signin') return z.NEVER;
-
-      const hasUpperCaseAndLowerCase = /[a-z]/.test(val) && /[A-Z]/.test(val);
-      const hasNumberOrSymbol = /\d/.test(val) || /[!@#$%^&*]/.test(val);
-
-      if (val.length < 8) {
-        ctx.addIssue({
-          code: z.ZodIssueCode.too_small,
-          message: 'Must be at least 8 characters long',
-          minimum: 8,
-          inclusive: true,
-          type: 'string',
-        });
-      }
-
-      if (!hasUpperCaseAndLowerCase) {
-        ctx.addIssue({
-          code: z.ZodIssueCode.custom,
-          message: 'Must contain at least one uppercase and lowercase letter',
-        });
-      }
-
-      if (!hasNumberOrSymbol) {
-        ctx.addIssue({
-          code: z.ZodIssueCode.custom,
-          message: 'Must contain at least one number or symbol',
-        });
-      }
-    }),
-  });
-
   const setUser = useAuthStore((state) => state.setUser);
 
+  const schema = authSchema(variant);
   const methods = useForm<z.infer<typeof schema>>({
     mode: 'onTouched',
     resolver: zodResolver(schema),
@@ -73,7 +41,7 @@ export default function AuthForm({ variant }: AuthFormProps) {
       toast.show(`Welcome ${response.user.displayName ?? response.user.email}`);
       router.push('/');
     } catch (error) {
-      if (error instanceof FirebaseError) 
+      if (error instanceof FirebaseError)
         switch (error.code) {
           case 'auth/email-already-in-use':
             toast.show('Email already in use', {
@@ -114,7 +82,7 @@ export default function AuthForm({ variant }: AuthFormProps) {
                 preset: 'error',
               },
             });
-      }
+        }
     }
   });
 
