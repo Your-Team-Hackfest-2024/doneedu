@@ -73,10 +73,48 @@ export default function AuthForm({ variant }: AuthFormProps) {
       toast.show(`Welcome ${response.user.displayName ?? response.user.email}`);
       router.push('/');
     } catch (error) {
-      if (error instanceof FirebaseError)
-        toast.show(error.name, {
-          message: error.message,
-        });
+      if (error instanceof FirebaseError) 
+        switch (error.code) {
+          case 'auth/email-already-in-use':
+            toast.show('Email already in use', {
+              message: 'Please try a different email',
+              burntOptions: {
+                preset: 'error',
+              },
+            });
+            break;
+          case 'auth/invalid-email':
+            toast.show('Invalid email', {
+              message: 'Please try a different email',
+              burntOptions: {
+                preset: 'error',
+              },
+            });
+            break;
+          case 'auth/user-not-found':
+            toast.show('User not found', {
+              message: 'Please try a different email',
+              burntOptions: {
+                preset: 'error',
+              },
+            });
+            break;
+          case 'auth/invalid-credential':
+            toast.show('Wrong password', {
+              message: 'Please try a different password',
+              burntOptions: {
+                preset: 'error',
+              },
+            });
+            break;
+          default:
+            toast.show(error.name, {
+              message: error.message,
+              burntOptions: {
+                preset: 'error',
+              },
+            });
+      }
     }
   });
 
